@@ -82,7 +82,7 @@ class Tabs
 		let href, id, tab;
 		for (let btn of btns)
 		{
-			if (!(href = this.find_href(btn))) continue; // get button's 'href' attribute
+			if (!(href = this.find_href(btn))) continue; // get button's 'href' attribute  || FORK - Get tref to suppress url tooltip
 			if (!(id = this.frag(href))) continue; // extract anchor string (remove '#')
 			if (!(tab = document.getElementById(id))) continue; // find corresponding tab
 
@@ -153,11 +153,12 @@ class Tabs
 	 */
 	find_href(e)
 	{
+		// FORK - Find the tref instead
 		// If e is an <A> element itself, return it's href attribute
-		if (e.nodeName.toLowerCase() === "a") return e.getAttribute("href");
+		if (e.nodeName.toLowerCase() === "a") return e.getAttribute("tref");
 		// Find the first <A> within e and returns its href attribute
 		let a = e.querySelector("a");
-		return a ? a.getAttribute("href") : null;
+		return a ? a.getAttribute("tref") : null;
 	}
 	
 	/*
